@@ -8,7 +8,7 @@ const getLogin = async (req, res) => {
         res.send('success login!')
     }
     else {
-        req.send('login failed!')
+        res.send('login failed!')
     }
 }
 

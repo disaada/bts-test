@@ -17,6 +17,10 @@ const login = require('./routes/login')
 app.post('/', login.getLogin)
 
 const shop = require('./routes/shop')
+app.post('/checkout', shop.checkout)
+app.get('/order/:id', shop.getOrder)
+app.post('/order/:id/update', shop.updateOrder)
+app.get('/order/:id/delete', shop.deleteOrder)
 
 const port = 3000
 app.listen(port, () => {
