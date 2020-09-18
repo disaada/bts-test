@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "pretest",
+    "password": "123",
+    "database": "pretest",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
