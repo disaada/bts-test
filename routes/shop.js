@@ -34,22 +34,22 @@ const getOrder = async (req, res) => {
     res.send({data_order, order_detail})
 }
 
-const updateOrder = async (req, res) => {
-    const { email, password } = req.body
+const updateOrderDetail = (req, res) => {
+    const { item, qty, id_order } = req.body
     const id = req.params.id
-    const order = await Model.order.update({
-        "email": email,
-        "password": bcrypt.hashSync(password, 10)
-    }, {where: {id}},).then(() => {
+    Model.order_detail.update({item, qty}, {where: {id, id_order}}).then(() => {
         res.send('updated!')
     })
 }
 
 const deleteOrder = (req, res) => {
-    const id = req.params.id
-    Model.order.destroy({where: {id}}).then(() => {
-        res.send('deleted!')
+    const id_order = req.params.id
+    Model.order.destroy({where: {id_order}}).then(() => {
+        Model.order_detail.destroy({where: {id_order}}).then(() => {
+            res.send('deleted!')
+        })
     })
+    
 }
 
 /* const editorder = (req, res) => {
@@ -59,6 +59,6 @@ const deleteOrder = (req, res) => {
 module.exports = {
     checkout,
     getOrder,
-    updateOrder,
+    updateOrderDetail,
     deleteOrder
 }
